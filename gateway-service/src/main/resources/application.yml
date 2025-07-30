@@ -1,0 +1,53 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory
+    username: user
+    password: pass
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+security:
+  api-key: 123456GATEWAYSECRET
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      catalogService:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+  retry:
+    instances:
+      catalogService:
+        maxAttempts: 3
+        waitDuration: 2s
+  timelimiter:
+    instances:
+      catalogService:
+        timeoutDuration: 3s
+
+services:
+  catalog:
+    url: "http://localhost:8080/api/v1/products"
+  inventory:
+    url: "http://localhost:8081/api/v1/inventory"
+  purchase:
+    url: "http://localhost:8082/api/v1/purchase"
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info

@@ -1,0 +1,15 @@
+package com.inventory.gateway.domain.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class PurchaseRequest {
+    private Long productId;
+    private Long quantityPurchased;
+}
