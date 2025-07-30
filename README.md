@@ -84,7 +84,7 @@ GATEWAY (auth, resilience)
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/inventory-project.git
+git clone https://github.com/json959/inventoryProject.git
 cd inventory-project
 ```
 
